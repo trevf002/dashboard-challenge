@@ -8,7 +8,7 @@ function init() {
       selDataset.append("option").property("value", n).text(n)
     })
     buildCharts()
-})
+});
 }
 function buildCharts() {
   var selected = d3.select("#selDataset").property("value");
@@ -18,7 +18,7 @@ function buildCharts() {
   demo.html("")
   Object.entries(metadata).forEach(([key,value])=>{
     demo.append("p").html(`<b>${key}:</b> ${value}`)
-  })
+  });
   var {otu_ids, sample_values, otu_labels} = samples
   var barData = [{
     x:sample_values.slice(0, 10).reverse(),
@@ -26,7 +26,7 @@ function buildCharts() {
     text:otu_labels.slice(0, 10).reverse(),
     type: "bar",
     orientation: "h",
-  }]
+  }];
   var barLayout = {
     title: "Top Ten Bacteria",
     margin: { t: 30, l: 150 }
@@ -54,6 +54,29 @@ function buildCharts() {
       colorscale: "Earth"
     }
   }  
-  Plotly.newPlot ("bubble", bubbleData, bubbleLayout)
+];
+  Plotly.newPlot ("bubble", bubbleData, bubbleLayout);
+};
+
+function init() {
+var selector = d3.select("#selDataset");
+d3.json("static/js/samples.json").then((data) =>{
+  var sampleNames = data.names;
+  bbData = data
+  sampleNames.forEach((sample) => {
+    selector
+      .append("option")
+      .text(sample)
+      .property("value", sample);
+  });  
+  var firstSample =sampleNames[0];
+  buildCharts(firstSample);
+  //buildMetadata(firstSample);  
+})
 }
+function optionChanged(newSample) {
+  buildCharts(newSample);
+  buildMetadata(newSample);
+}
+
 init()
