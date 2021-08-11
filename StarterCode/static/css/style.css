@@ -1,0 +1,23 @@
+  
+* {
+  box-sizing: border-box;
+  font-family: Ubuntu, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: black;
+  
+}
+.jumbotron{
+    background-color: rgb(147, 223, 241);
+}
+.wrapper {
+
+  background-image: url("https://ichemepresident.files.wordpress.com/2014/09/bacteria.jpg");
+ 
+}

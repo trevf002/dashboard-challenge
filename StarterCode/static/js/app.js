@@ -35,7 +35,25 @@ function buildCharts() {
     responive: true
   }
   Plotly.newPlot("bar", barData, barLayout, config)
+  var bubbleLayout = {
+    title: "Bacteria Cultures Per Sample",
+    margin: { t: 0 },
+    hovermode: "closest",
+    xaxis: { title: "OTU ID" },
+    margin: { t: 30 }
+  }
+  var bubbleData = [
+  {
+    x: otu_ids,
+    y: sample_values,
+    text: otu_labels,
+    mode: "markers",
+    marker: {
+      size: sample_values,
+      color: otu_ids,
+      colorscale: "Earth"
+    }
+  }  
+  Plotly.newPlot ("bubble", bubbleData, bubbleLayout)
 }
-
-
 init()
